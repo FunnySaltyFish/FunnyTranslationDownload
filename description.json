@@ -1,7 +1,6 @@
 {
- "versionCode":3,
- "versionName":"1.0.1",
- "apkUrl":"https://raw.githubusercontent.com/FunnySaltyFish/FunnyTranslationDownload/master/FunnyTranslation_1.0.0.apk",
- "updateLogUrl":"https://raw.githubusercontent.com/FunnySaltyFish/FunnyTranslationDownload/master/updateLog.txt",
- "updateLog":"更新了个啥"
+	"versionCode":3,
+	"versionName":"1.1.0",
+	"apkUrl":"https://raw.githubusercontent.com/FunnySaltyFish/FunnyTranslationDownload/master/app_signed.apk",
+	"updateLog":"v1.1:\n◆你关注的更新\n—支持本地语音朗读\n—添加右侧侧滑图标\n—添加自动更新\n—添加文言文（仅百度）\n◆你不关注的更新\n—自动更新处理逻辑移到子线程，并尝试只在空闲时弹出\n—尝试添加Google翻译"
 }
