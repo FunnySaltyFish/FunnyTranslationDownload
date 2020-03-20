@@ -3,5 +3,5 @@
 	"versionName":"1.2.0-bug修复版",
 	"apkUrl":"https://www.coolapk.com/apk/com.funny.translation",
 	"updateLog":"v1.2.0-bug修复版:\n◆主要\n—此版本为临时版本，意在解决1.2.0添加的“智能纠错”变成“智障纠错”问题。对于这个问题导致的其他语种无法翻译，在下深表歉意。\n—由于暂时无法修复（语言识别难以准确，总有交错或误判），目前此版本暂时移除此功能。\n\n◆其他\n—对于此bug带来的影响使用体验的问题，作者深表歉意。故此，作者在此版中加入动态结果展示功能，聊作赔偿。诚恳请求各位谅解！",
-	"IsUpdate":false
+	"isUpdate":false
 }
