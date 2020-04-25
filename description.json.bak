@@ -1,8 +1,7 @@
 {
-	
-	"versionCode":7,
+	"versionCode":6,
 	"versionName":"1.3.0",
 	"apkUrl":"https://www.coolapk.com/apk/com.funny.translation",
 	"isUpdate":false,
-	"updateLog":"应用目前有很多小问题，比如朗读时如果翻译结果语种与实际语言不对应，应用就会在朗读上一直卡住，没法使用。而目前的唯一解决方案只有退出重启。问题确实存在，但忙于学业我暂时没法修复，望谅解。\n\n另外，最近发现有很多不正规应用商店出现了本应用，版本老旧不说，还伴随着大量虚假宣传。在此声明：本应用当前在且仅在酷安官方发布，其余任何版本均非正版。对于任何因此类虚假宣传造成的用户理解歧义，"
+	"updateLog":""
 }
