@@ -1,7 +1,7 @@
 {
-	"versionCode":14,
+	"versionCode":15,
 	"versionName":"1.89.0",
 	"apkUrl":"https://www.coolapk.com/apk/254263",
-	"isUpdate":true,
-	"updateLog":"\n◆你关注的更新\n—新增 字符放大 引擎可以自定义填充字符了\n——入口：左侧侧滑—设置\n—修改 逐字翻译 替换为离线且仅支持中文\n—新增 朗读引擎 新增 有道词典\n——实测下，其对部分语言不受支持或支持性较，请酌情选择\n\n◆你不关注的更新：\n—弹出Toast行为变更，防止多次弹出造成部分Toast丢失\n—使用OkHttp3重写部分网络请求\n"
+	"isUpdate":false,
+	"updateLog":"开发者想不出来新整什么活了，各位帅气的老哥有什么建议的欢迎到酷安评论区指点~"
 }
