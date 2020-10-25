@@ -1,7 +1,7 @@
 {
 	"versionCode":15,
-	"versionName":"1.89.0",
+	"versionName":"1.14.4",
 	"apkUrl":"https://www.coolapk.com/apk/254263",
-	"isUpdate":false,
-	"updateLog":"开发者现已开学，后续更新可能放缓，敬请谅解！（同时仍然欢迎各位的宝贵意见~）"
+	"isUpdate":true,
+	"updateLog":"\nv1.14.4：\n◆你关注的更新\n—新增 在源语言右侧添加转换按钮，快速互换源语言和目标语言\n——注意，当目标语言有多项时，仅保留最上面被选择的一项参与互换\n—新增 支持自定义翻译引擎\n\n大学伊始，事情繁杂；忙里偷闲，还望海涵。\n"
 }
