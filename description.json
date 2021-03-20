@@ -1,7 +1,7 @@
 {
-	"versionCode":18,
-	"versionName":"1.37.7",
+	"versionCode":19,
+	"versionName":"2.0.0 beta-1",
 	"apkUrl":"https://www.coolapk.com/apk/254263",
-	"isUpdate":false,
-	"updateLog":"2.0.0 alpha-1内测版开始内测，全新的插件系统等你体验！想成为内测用户第一时间尝鲜？限时开放内测群：857362450，欢迎加入体验！"
+	"isUpdate":true,
+	"updateLog":"v2.0.0 beta-1：\n◆你关注的更新\n—新增 全新的插件系统(beta版)\n—新增 添加开发者其他应用一栏\n—修复 修复删除文本时偶现的闪退问题\n◆你不关注的更新\n—全面迁移到AndroidX\n\n◆其他\n—使用过程中遇到任何问题欢迎反馈，任何有价值的建议都将可能被采纳！\n"
 }
