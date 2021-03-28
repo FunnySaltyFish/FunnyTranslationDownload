@@ -2,6 +2,6 @@
 	"versionCode":20,
 	"versionName":"2.0.0 beta-2",
 	"apkUrl":"https://www.coolapk.com/apk/254263",
-	"isUpdate":true,
-	"updateLog":"v2.0.0 beta-2：\n◆你关注的更新\n—修复 修复失效的金山翻译（暂仅支持中英互译）\n—新增 语言新增泰语（仅百度翻译、谷歌翻译）\n—新增 新增简单的代码编辑器\n\n◆你不关注的更新\n—1202年了，新的界面终于采用DataBinding+ViewModel+LiveData构建了\n—其他一些我也忘了的更新\n\n◆其他\n—目前代码编辑器还是半成品，后续将持续完善。最近几个版本重心都会放在这部分上，非常欢迎各路大神参与插件的贡献！\n—使用过程中遇到任何问题欢迎反馈，任何有价值的建议都将可能被采纳！\n"
+	"isUpdate":false,
+	"updateLog":"新的版本有亿点点问题，我正在加紧修复！由此造成的不便向您致歉！"
 }
