@@ -1,7 +1,7 @@
 {
-	"versionCode":24,
+	"versionCode":25,
 	"versionName":"2.0.0 beta-6",
 	"apkUrl":"https://www.coolapk.com/apk/254263",
-	"isUpdate":true,
-	"updateLog":"v2.0.0 beta-6：\n◆你不一定关注的更新\n—修复 修复了翻译时进度滞后的问题\n—优化 代码编辑器未保存时，退出时需要二次确认\n—修复 插件管理无法删除的问题\n—修复 翻译时概率出现的闪退问题（部分）\n\n另：新插件【谷歌翻译十次】\n链接：https://pan.baidu.com/s/1Btm3UkINxXA1UMqh0csCQg \n提取码：ffff\n"
+	"isUpdate":false,
+	"updateLog":"谷歌翻译最近不太能用，我尝试修一修。可以在设置里面重新设置默认翻译引擎"
 }
