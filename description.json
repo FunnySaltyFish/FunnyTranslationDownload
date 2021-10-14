@@ -1,7 +1,7 @@
 {
 	"versionCode":25,
-	"versionName":"2.0.0 beta-6",
+	"versionName":"2.1.0 Explore01",
 	"apkUrl":"https://www.coolapk.com/apk/254263",
-	"isUpdate":false,
-	"updateLog":"谷歌翻译最近不太能用，我尝试修一修。可以在设置里面重新设置默认翻译引擎"
+	"isUpdate":true,
+	"updateLog":"v2.1.0 探索版01\n全新版本，欢迎体验。\n功能性稍欠缺，美观度提升、动效提升。\n新版本开源，地址：https://github.com/FunnySaltyFish/FunnyTranslation/,期待着您的贡献\n"
 }
