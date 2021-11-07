@@ -2,10 +2,22 @@ import sys
 import os
 import re
 from subprocess import Popen, PIPE
-update_log = """v2.1.0 探索版01
-全新版本，欢迎体验。
-功能性稍欠缺，美观度提升、动效提升。
-新版本开源，地址：https://github.com/FunnySaltyFish/FunnyTranslation/,期待着您的贡献
+update_log = """v2.1.0 探索版03
+软件更新啦~
+- 新增 鸣谢页面，感谢对本项目支持的大家
+—— 暂时为离线数据，之后会改成在线的
+- 调整 引擎选择默认隐藏，可手动点击展开
+- 修复 底部导航栏图标大小不一致的问题
+- 修复 修复强行退出程序数据不会被保存的问题
+- 修复 插件默认不会被启用的问题
+
+预告更新：
+ - 在线插件导入
+ - 插件编辑器
+ - 繁简转换（以插件形式提供） 
+
+我的周六周日又这么过了，嘤嘤嘤
+支持项目：https://afdian.net/@funnysaltyfish?tab=home，感谢啊啊啊啊！！！
 """
 def get_apk_detail(apkpath):
     # process = Popen("aapt d badging %s" % apkpath)
