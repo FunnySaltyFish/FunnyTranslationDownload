@@ -1,7 +1,7 @@
 {
-	"versionCode":27,
-	"versionName":"2.1.0 Explore03",
+	"versionCode":29,
+	"versionName":"2.1.0 Explore05",
 	"apkUrl":"https://www.coolapk.com/apk/254263",
 	"isUpdate":true,
-	"updateLog":"v2.1.0 探索版03\n软件更新啦~\n- 新增 鸣谢页面，感谢对本项目支持的大家\n—— 暂时为离线数据，之后会改成在线的\n- 调整 引擎选择默认隐藏，可手动点击展开\n- 修复 底部导航栏图标大小不一致的问题\n- 修复 修复强行退出程序数据不会被保存的问题\n- 修复 插件默认不会被启用的问题\n\n预告更新：\n - 在线插件导入\n - 插件编辑器\n - 繁简转换（以插件形式提供） \n\n我的周六周日又这么过了，嘤嘤嘤\n支持项目：https://afdian.net/@funnysaltyfish?tab=home，感谢啊啊啊啊！！！\n"
+	"updateLog":"v2.1.0 探索版05\n软件更新啦~\n- 修复 软件闪退bug\n- 修复 修复顶部栏黑色的问题（现在是白色的了）\n- 新增 在线插件！\n—— 重磅更新？\n—— 插件开发文档：https://www.yuque.com/funnysaltyfish/vzmuud/bi10ru\n—— 插件投稿：暂时方式为导出后与作者私信\n- 配套更新 插件编辑器\n—— 入口 插件管理——右上角加号——新建文件\n—— 支持插件调试、保存、导出\n- 应用语言部分支持英文\n\n上个版本闪退问题是在对不住了，修了一天总算是好了\n"
 }

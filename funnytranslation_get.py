@@ -2,22 +2,20 @@ import sys
 import os
 import re
 from subprocess import Popen, PIPE
-update_log = """v2.1.0 探索版03
+update_log = """v2.1.0 探索版05
 软件更新啦~
-- 新增 鸣谢页面，感谢对本项目支持的大家
-—— 暂时为离线数据，之后会改成在线的
-- 调整 引擎选择默认隐藏，可手动点击展开
-- 修复 底部导航栏图标大小不一致的问题
-- 修复 修复强行退出程序数据不会被保存的问题
-- 修复 插件默认不会被启用的问题
+- 修复 软件闪退bug
+- 修复 修复顶部栏黑色的问题（现在是白色的了）
+- 新增 在线插件！
+—— 重磅更新？
+—— 插件开发文档：https://www.yuque.com/funnysaltyfish/vzmuud/bi10ru
+—— 插件投稿：暂时方式为导出后与作者私信
+- 配套更新 插件编辑器
+—— 入口 插件管理——右上角加号——新建文件
+—— 支持插件调试、保存、导出
+- 应用语言部分支持英文
 
-预告更新：
- - 在线插件导入
- - 插件编辑器
- - 繁简转换（以插件形式提供） 
-
-我的周六周日又这么过了，嘤嘤嘤
-支持项目：https://afdian.net/@funnysaltyfish?tab=home，感谢啊啊啊啊！！！
+上个版本闪退问题是在对不住了，修了一天总算是好了
 """
 def get_apk_detail(apkpath):
     # process = Popen("aapt d badging %s" % apkpath)
@@ -56,7 +54,11 @@ def get_apk_detail(apkpath):
     with open("./description.json","w+",encoding="utf-8") as f:
         f.write(json_text)
 
-    os.popen(f'copy {apkpath} D:\\projects\\AppProjects\\Mine\\FunnyTranslationDownload\\funnytranslation_{versionName}.apk')
+    with open(apkpath,"rb") as f:
+        f2 = open(f"./funnytranslation_{versionName}.apk","wb+")
+        f2.write(f.read())
+        f2.close()
+            # os.popen(f'copy {apkpath} D:\\projects\\AppProjects\\Mine\\FunnyTranslationDownload\\funnytranslation_{versionName}.apk')
 
     
     
