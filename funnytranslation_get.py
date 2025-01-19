@@ -2,105 +2,133 @@ import sys
 import os
 import re
 import requests
+from typing import Optional, Tuple
 
+update_log = """译站桌面端首个公开版本正式发布！
 
-update_log = """v2.2.4
-- 优化 状态栏沉浸！
-- 优化 优化异形屏显示效果（水滴、刘海等）
-- 调整 移除设置“显示状态栏”，更改为“隐藏导航栏”
-- 更新 捐赠渠道新增支付宝
-- 更新 新增项目源码、第三方库列表和隐私政策页面
-- 优化 应用崩溃时增加捕获页面，并可提交崩溃报告至服务器
-- 优化 优化在较窄屏幕横屏时（如手机横屏）的显示效果
-- 优化 其他页面小细节的调整
-
-下次更新会优化悬浮窗 @酷友 松川吖
-要耗点时间
+v2.8.2
+全新大版本来袭！
+- 【重要】大模型翻译支持实时显示结果，减少等待时间
+- 【重要】2024译站年度翻译报告上线
+- 新增 悬浮窗支持朗读原文本
+- 新增 支持查看AI点数消耗
+- 新增 AI点数长按可展示购买点数+赠送点数
+- 新增 应用检测更新换成了新弹窗，更符合应用样式
+- 优化 提高应用流畅度，减小安装包体积
+- 优化 修复收藏夹页面无法关闭的问题，优化收藏夹使用体验
+- 优化 通知不展开时默认跑马灯播放
+- 优化 密码输错时会给出实时提示
+- 优化 移除了选择语言页面多余的Item背景
+- 优化 提高AI图片后处理可用性
+- 优化 长文翻译增长上下文、支持直接复制结果文本
+- 修复 修复长按朗读音频跳转时，应用崩溃的问题
+- 修复 点击图片选择器崩溃的问题
+- 升级 Compose至1.7.0&Kotlin至1.9.23
+- 其他优化和更新
 """
-channel = "stable"
 
-def get_apk_detail(apkpath):
-    # process = Popen("aapt d badging %s" % apkpath)
-    # process.stdin=PIPE
-    # process.stderr=PIPE
-    # output , err = process.communicate()
-    output = os.popen(f"aapt d badging {apkpath}").read() #.decode(encoding='utf-8')
-    print(output)
-    match = re.compile(r"package: name='(\S+)' versionCode='(\d+)' versionName='(.+?)'").match(output)
-    if not match:
-        raise Exception("can't get packageinfo")
- 
-    packagename = match.group(1)
-    versionCode = match.group(2)
-    versionName = match.group(3)
- 
-    print('packagename:' + packagename)
-    print('versionCode:' + versionCode)
-    print('versionName:' + versionName)
+channel = "common"
 
-    global update_log
-    with open("./updateLog.txt","a+",encoding="utf-8") as f:
-        f.write(f"\n{update_log}")
-
-    update_log = update_log.replace("\n","\\n")
-
-    json_text = f"""{{
-	    "versionCode":{versionCode},
-	    "versionName":"{versionName}",
-	    "apkUrl":"https://www.coolapk.com/apk/254263",
-	    "isUpdate":true,
-	    "updateLog":"{update_log}"
-    }}"""
-
-    print(json_text)
-    with open("./description.json","w+",encoding="utf-8") as f:
-        f.write(json_text)
-
-    with open(apkpath,"rb") as f:
-        f2 = open(f"./funnytranslation_{versionName}.apk","wb+")
-        f2.write(f.read())
-        f2.close()
+def get_file_info(filepath: str) -> Tuple[Optional[int], Optional[str], str]:
+    """
+    Get version information from different file types
+    Returns: (version_code, version_name, platform)
+    """
+    file_ext = os.path.splitext(filepath)[1].lower()
     
+    if file_ext in ['.apk', '.aab']:
+        # Use existing AAPT logic for Android
+        output = os.popen(f"aapt d badging {filepath}").read()
+        match = re.compile(r"package: name='(\S+)' versionCode='(\d+)' versionName='(.+?)'").match(output)
+        if not match:
+            raise Exception("can't get packageinfo")
+        return int(match.group(2)), match.group(3), "android"
+    
+    # For other platforms, try to extract version from filename
+    toml_path = r"D:\projects\kotlin\Transtation-KMP\gradle\libs.versions.toml"
+    import toml
+    with open(toml_path, "r") as f:
+        data = toml.load(f)
+    versions = data["versions"]
+    version_code = versions["project-versionCode"]
+    version_name = versions["project-versionName"]
+    platform = "desktop"
+    return version_code, version_name, platform
 
-def add_update_version(apkpath):
-    # version_code = int(form.get("version_code", 0))
-    # version_name = form.get("version_name","0.0.0")
-    # channel = form.get("channel", "stable")
-    # update_log = form.get("update_log", "Empty Log")
-    # file = request.files["apk"]
-    output = os.popen(f"aapt d badging {apkpath}").read() #.decode(encoding='utf-8')
-    match = re.compile(r"package: name='(\S+)' versionCode='(\d+)' versionName='(.+?)'").match(output)
-    if not match:
-        raise Exception("can't get packageinfo")
- 
-    packagename = match.group(1)
-    versionCode = match.group(2)
-    versionName = match.group(3)
- 
-    print('packagename:' + packagename)
-    print('versionCode:' + versionCode)
-    print('versionName:' + versionName)
-
+def add_update_version(filepath: str):
+    version_code, version_name, platform = get_file_info(filepath)
+    file_extension = os.path.splitext(filepath)[1][1:]  # Remove the dot
+    
+    print(f'Platform: {platform}')
+    print(f'Version Code: {version_code}')
+    print(f'Version Name: {version_name}')
+    
     data = {
-        "version_code" : int(versionCode),
-        "version_name" : versionName,
-        "channel" : channel,
-        "update_log" : update_log,
+        "version_code": version_code,
+        "version_name": version_name,
+        "channel": channel,
+        "update_log": update_log,
+        "platform": platform,
+        "file_extension": file_extension
     }
-
     
     files = {
-        "apk" : open(apkpath, "rb")
+        "apk": open(filepath, "rb")
     }
-
-    with open(apkpath,"rb") as f:
-        f2 = open(f"./funnytranslation_{versionName}.apk","wb+")
-        f2.write(f.read())
-        f2.close()
     
-    response = requests.post("https://api.funnysaltyfish.fun/trans/v1/app_update/add_new_version", data=data, files=files)
+    # Save a copy locally
+    with open(filepath, "rb") as f:
+        output_filename = f"./funnytranslation_{version_name}_{channel}_{platform}.{file_extension}"
+        with open(output_filename, "wb+") as f2:
+            f2.write(f.read())
+    
+    response = requests.post(
+        "https://api.funnysaltyfish.fun/trans/v1/app_update/add_new_version", 
+        # "http://127.0.0.1:5001/trans/v1/app_update/add_new_version",
+        data=data, 
+        files=files
+    )
     print(response.text)
 
 if __name__ == "__main__":
-    add_update_version("D:\\projects\\AppProjects\\Mine\\FunnyTranslation\\translate\\release\\translate-release.apk")
-    get_apk_detail("D:\\projects\\AppProjects\\Mine\\FunnyTranslation\\translate\\release\\translate-release.apk")
+    platform = "android" if input("请输入平台，1: android, 2: desktop: ").strip() != "2" else "desktop"
+    app_dir = r"D:\projects\kotlin\Transtation-KMP\composeApp"
+    if platform == 'android':
+        app_dir += r'\common\release'
+        supported_extensions = ('.apk', '.aab')
+    else:
+        app_dir += r'\release\main'
+        supported_extensions = ('.msi', '.zip', '.dmg', '.exe')
+
+    app_path = ""
+
+    import os
+    from pathlib import Path
+    p = Path(app_dir)
+
+    def iter_multiple_files():
+        for ext in supported_extensions:
+            for each in p.glob("**/*" + ext):
+                yield each
+
+    last_modify_time = 0
+    for filepath in iter_multiple_files():
+        mtime = os.path.getctime(filepath)
+        print(filepath, mtime)
+        if mtime > last_modify_time:
+            last_modify_time = mtime
+            app_path = filepath
+            
+    if not os.path.exists(app_path):
+        print(f"No supported application file found in: {app_dir}")
+        sys.exit(0)
+        
+    print(f"Found application file: {app_path}")
+    input("Press Enter to continue...")
+    
+    try:
+        # print(get_file_info(app_path))
+        add_update_version(app_path)
+    except Exception as e:
+        print(f"Error: {e}")
+        sys.exit(1)
