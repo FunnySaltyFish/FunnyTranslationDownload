@@ -4,30 +4,57 @@ import re
 import requests
 from typing import Optional, Tuple
 
-update_log = """译站桌面端首个公开版本正式发布！
+update_log = """v2.9.5
+大更新，建议升级。新更新弹窗的用户建议使用“浏览器下载”来更新.
+更新亮点：大模型语音翻译 | 全新引擎选择对话框 | 引擎预设 | 全新悬浮窗 | 剪切板提示 | 回弹&模糊
 
-v2.8.2
-全新大版本来袭！
-- 【重要】大模型翻译支持实时显示结果，减少等待时间
-- 【重要】2024译站年度翻译报告上线
-- 新增 悬浮窗支持朗读原文本
-- 新增 支持查看AI点数消耗
-- 新增 AI点数长按可展示购买点数+赠送点数
-- 新增 应用检测更新换成了新弹窗，更符合应用样式
-- 优化 提高应用流畅度，减小安装包体积
-- 优化 修复收藏夹页面无法关闭的问题，优化收藏夹使用体验
-- 优化 通知不展开时默认跑马灯播放
-- 优化 密码输错时会给出实时提示
-- 优化 移除了选择语言页面多余的Item背景
-- 优化 提高AI图片后处理可用性
-- 优化 长文翻译增长上下文、支持直接复制结果文本
-- 修复 修复长按朗读音频跳转时，应用崩溃的问题
-- 修复 点击图片选择器崩溃的问题
-- 升级 Compose至1.7.0&Kotlin至1.9.23
-- 其他优化和更新
+- 新增 语音识别翻译功能 | 欢迎尝试
+  —— 基于大模型流式语音识别，支持多语言混合转录，超高准确度
+  —— 实时翻译可自由搭配大模型，支持边翻译边纠错（推荐模型：混元 turbos、GLM-4.5-AirX）
+  —— 开始翻译前可添加上下文、关键词，提升识别准确度
+  —— 使用AI点数计费，转录每小时消耗10点，翻译按Token数计费
+  —— 支持对不满意的结果重新翻译，支持对转录出的结果智能优化
+
+- 新增 使用Compose重写悬浮窗
+  —— 统一风格，支持主题切换
+  —— 支持直接更改翻译引擎
+  —— 支持大模型流式翻译
+
+- 新增 剪切板内容提示功能
+  —— 当剪切板有内容时在主页显示小提示条
+  —— 点击可快速输入或直接翻译（可在设置中配置行为）
+
+- 新增 预设功能
+  —— 预设包含一组引擎，通过切换预设，可适应不同场景的翻译需要
+
+- 新增 引擎选择新UI界面
+  —— 全新的引擎选择对话框设计，支持筛选、搜索、排序
+
+- 新增 注册登录页面自动填充支持
+- 优化 消耗为0的费用显示为“免费”
+- 优化 初次显示AI计费时会显示详细，指引新用户
+- 优化 App更新弹窗支持中途停止下载，支持复制文本，修复安装唤不起来的问题
+- 优化 为部分页面新增越界回弹效果
+- 优化 侧滑抽屉实时模糊效果（Android 12+）
+- 优化 当选择引擎数目超出限制时，提示在选择阶段就会出现
+- 优化 插件编写页面，修复无法打开文件的问题
+- 优化 多处UI布局和交互
+  —— 改进对话框内边距和布局调整
+  —— 优化图片翻译页面布局
+  —— 改进AI聊天页面键盘行为
+
+- 修复 长按悬浮球截图的崩溃问题
+- 修复 深色模式下模型管理页面文本颜色显示问题
+- 升级 Kotlin至2.2.0，Compose至1.8.2
+---
+
+此次更新感谢以下内测群群友的建议和反馈（排名不分先后）：
+@追赶山边的风 @松川 @MUK @Moon @螃蟹胡顿254 @Forever @清影 @　 
 """
 
 channel = "common"
+# base_url = "http://127.0.0.1:5001"
+base_url = "https://api.funnysaltyfish.fun"
 
 def get_file_info(filepath: str) -> Tuple[Optional[int], Optional[str], str]:
     """
@@ -83,8 +110,7 @@ def add_update_version(filepath: str):
             f2.write(f.read())
     
     response = requests.post(
-        "https://api.funnysaltyfish.fun/trans/v1/app_update/add_new_version", 
-        # "http://127.0.0.1:5001/trans/v1/app_update/add_new_version",
+        f"{base_url}/trans/v1/app_update/add_new_version", 
         data=data, 
         files=files
     )
@@ -92,10 +118,10 @@ def add_update_version(filepath: str):
 
 if __name__ == "__main__":
     platform = "android" if input("请输入平台，1: android, 2: desktop: ").strip() != "2" else "desktop"
-    app_dir = r"D:\projects\kotlin\Transtation-KMP\composeApp"
+    app_dir = r"D:\projects\kotlin\Transtation\Transtation-KMP\composeApp"
     if platform == 'android':
         app_dir += r'\common\release'
-        supported_extensions = ('.apk', '.aab')
+        supported_extensions = ('.apk', '.aab', ".APK")
     else:
         app_dir += r'\release\main'
         supported_extensions = ('.msi', '.zip', '.dmg', '.exe')
@@ -128,7 +154,7 @@ if __name__ == "__main__":
     
     try:
         # print(get_file_info(app_path))
-        add_update_version(app_path)
+        add_update_version(str(app_path))
     except Exception as e:
         print(f"Error: {e}")
         sys.exit(1)
